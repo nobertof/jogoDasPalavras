@@ -85,7 +85,7 @@ export default function Game({ navigation, route }) {
             { label: "B", backgroundColor: "primary" },
             { label: "N", backgroundColor: "primary" },
             { label: "M", backgroundColor: "primary" },
-            { label: <Feather name="delete" size={width / 42} color="#FFF" />, backgroundColor: "primary", delete: true },
+            { label: <Feather name="delete" size={width / 30} color="#FFF" />, backgroundColor: "primary", delete: true },
         ],
     ])
 
@@ -251,7 +251,7 @@ export default function Game({ navigation, route }) {
                         <View style={DefaultStyles.linhaTeclado}>
                             {
                                 linha.map((coluna, index) => {
-                                    return <ButtonCustomized key={index} onPress={() => onPresstButtonTeclado(coluna)} style={{ margin: 2, marginTop: 6, padding: 1, width: width / 14 }} labelStyle={{ fontSize: width / 40, alignText: "center", width: "100%" }} label={coluna.label} backgroundColor={coluna.backgroundColor} />
+                                    return <ButtonCustomized key={index} onPress={() => onPresstButtonTeclado(coluna)} style={{ margin: 2, marginTop: 6, padding: 1, width: width / 12 }} labelStyle={{ fontSize: width / 30, alignText: "center", width: "100%" }} label={coluna.label} backgroundColor={coluna.backgroundColor} />
                                 })
                             }
                         </View>
