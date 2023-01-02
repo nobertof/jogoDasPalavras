@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, Alert } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import * as FileSystem from 'expo-file-system';
+import { StyleSheet, Dimensions } from "react-native";
 
 //Style
 import DefaultStyles from '../styles/DefaultStyles';
@@ -12,6 +13,7 @@ import ButtonCustomized from '../components/ButtonCustomized';
 
 import palavrasGame from '../database/palavras.json';
 
+const { width, height } = Dimensions.get("screen");
 export default function Game({ navigation, route }) {
 
     //Quantidade de letras escolhidas para a palavra
@@ -83,7 +85,7 @@ export default function Game({ navigation, route }) {
             { label: "B", backgroundColor: "primary" },
             { label: "N", backgroundColor: "primary" },
             { label: "M", backgroundColor: "primary" },
-            { label: <Feather name="delete" size={16} color="#FFF" />, backgroundColor: "primary", delete: true },
+            { label: <Feather name="delete" size={width / 42} color="#FFF" />, backgroundColor: "primary", delete: true },
         ],
     ])
 
@@ -132,19 +134,37 @@ export default function Game({ navigation, route }) {
         if (palavraInformada.length == letras) {
             if (palavrasParaJogar.filter(value => value.toUpperCase() == palavraInformada).length > 0) {
                 if (palavraInformada == palavraEscolhida.toUpperCase()) {
-
                     navigation.push("Home");
                     navigation.push("WinnerOrLoser", { palavraEscolhida: palavraEscolhida, tentativa: linhaAtiva + 1, action: "Winner" });
                 }
+
                 setLinhaAtiva(prev => {
-                    if (prev < tentativas - 1)
-                        return prev + 1
+                    if (prev < tentativas - 1) {
+                        const _teclado = teclado.map(linha => {
+                            const _linha = linha.map(coluna => {
+                                if (coluna.backgroundColor != "success") {
+                                    if (palavras[linhaAtiva].filter((value, index) => coluna.label == value && palavraEscolhida.toUpperCase()[index] == value).length > 0) {
+                                        coluna.backgroundColor = "success";
+                                    } else if (palavras[linhaAtiva].filter((value) => coluna.label == value && colunas.filter(f => palavraEscolhida.toUpperCase()[f] == value).length > 0).length > 0) {
+                                        coluna.backgroundColor = "warning";
+                                    } else if (palavras[linhaAtiva].filter((value) => coluna.label == value && colunas.filter(f => palavraEscolhida.toUpperCase()[f] == value).length == 0).length > 0) {
+                                        coluna.backgroundColor = "danger";
+                                    }
+                                }
+                                return coluna;
+                            });
+                            return _linha;
+                        })
+                        setTeclado(_teclado);
+                        return prev + 1;
+                    }
                     else {
                         navigation.push("Home");
                         navigation.push("WinnerOrLoser", { palavraEscolhida: palavraEscolhida, tentativa: linhaAtiva + 1, action: "Loser" });
                         return prev;
                     }
                 });
+
             } else {
                 Alert.alert("Aviso!", "A palavra informada não esta presente no banco de dados");
             }
@@ -205,7 +225,6 @@ export default function Game({ navigation, route }) {
 
     return (
         <View style={DefaultStyles.mainContainerApp}>
-            <Text style={{ marginHorizontal: 30, backgroundColor: "red" }}>{palavraEscolhida}</Text>
             <View>
                 {linhas.map(linha => {
                     return (
@@ -232,7 +251,7 @@ export default function Game({ navigation, route }) {
                         <View style={DefaultStyles.linhaTeclado}>
                             {
                                 linha.map((coluna, index) => {
-                                    return <ButtonCustomized key={index} onPress={() => onPresstButtonTeclado(coluna)} style={{ margin: 2, marginTop: 6, padding: 1 }} label={coluna.label} backgroundColor={coluna.backgroundColor} />
+                                    return <ButtonCustomized key={index} onPress={() => onPresstButtonTeclado(coluna)} style={{ margin: 2, marginTop: 6, padding: 1, width: width / 14 }} labelStyle={{ fontSize: width / 40, alignText: "center", width: "100%" }} label={coluna.label} backgroundColor={coluna.backgroundColor} />
                                 })
                             }
                         </View>

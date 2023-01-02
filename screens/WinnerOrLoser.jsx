@@ -35,9 +35,9 @@ export default function WinnerOrLoser({ navigation, route }) {
         <View style={DefaultStyles.containerWinnerAndLoserApp}>
             <CustomModal visible={visibleModal} closeModal={() => setVisibleModal(!visibleModal)} label={"Escolha o modo"}>
                 <View style={DefaultStyles.containerOptionsModalHome}>
-                    <ButtonCustomized label={"4 Letras"} backgroundColor={"secondary"} onPress={() => onPressOption(4)} />
-                    <ButtonCustomized label={"5 Letras"} backgroundColor={"secondary"} onPress={() => onPressOption(5)} />
-                    <ButtonCustomized label={"6 Letras"} backgroundColor={"secondary"} onPress={() => onPressOption(6)} />
+                    <ButtonCustomized style={{ margin: 4, padding: 3 }} label={"4 Letras"} backgroundColor={"secondary"} onPress={() => onPressOption(4)} />
+                    <ButtonCustomized style={{ margin: 4, padding: 3 }} label={"5 Letras"} backgroundColor={"secondary"} onPress={() => onPressOption(5)} />
+                    <ButtonCustomized style={{ margin: 4, padding: 3 }} label={"6 Letras"} backgroundColor={"secondary"} onPress={() => onPressOption(6)} />
                 </View>
             </CustomModal>
             <AntDesign name={action == "Winner" ? "Trophy" : "closecircle"} size={80} color={Theme.Colors.white} />

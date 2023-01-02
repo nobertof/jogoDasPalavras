@@ -1,3 +1,6 @@
+import { StyleSheet, Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("screen");
 const Theme = {
     Colors: {
         primary: "#2980b9",
@@ -14,7 +17,7 @@ const Theme = {
         title: 24,
         margin: 10,
         padding: 10,
-        radius: 20
+        radius: width/45
     }
 }
 

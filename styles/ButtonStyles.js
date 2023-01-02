@@ -23,6 +23,7 @@ export default StyleSheet.create({
             fontWeight: "bold",
             alignItems: "center",
             margin: Theme.Sizes.margin,
+
         }
     }
 });

@@ -12,7 +12,7 @@ export default StyleSheet.create({
         height
     },
     mainContainerContent: {
-        minHeight: "25%",
+        minHeight: "17%",
         maxHeight: "70%",
         width: "95%",
         borderRadius: Theme.Sizes.radius,

@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "jogoDasPalavras",
+    "name": "Palavras",
     "slug": "jogoDasPalavras",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -24,10 +24,16 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.nobertof.jogoDasPalavras"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b93b3d19-5a03-48d7-a95b-76eeb67ae5c9"
+      }
     }
   }
 }
